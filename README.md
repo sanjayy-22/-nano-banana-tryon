@@ -1,13 +1,4 @@
----
-title: nano banana tryon
-emoji: 🍌
-colorFrom: yellow
-colorTo: red
-sdk: gradio
-sdk_version: 5.44.1
-app_file: app.py
-pinned: false
----
+
 
 # 🍌 nano banana tryon
 
@@ -43,4 +34,5 @@ A virtual try-on app that allows users to virtually try on clothing using Gemini
 - Python 3.8+
 - Gradio 4.0+
 - Google Generative AI library
+
 - Pillow for image processing
