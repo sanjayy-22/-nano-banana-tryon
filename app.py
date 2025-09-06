@@ -122,129 +122,220 @@ def create_interface():
     """
     Create the Gradio interface
     """
-        # Custom CSS for styling
+    # Custom CSS for better visibility and styling
     custom_css = """
     :root {
-        --primary-50: #e3f2fd; /* Lightest blue */
+        --primary-50: #e3f2fd;
         --primary-100: #bbdefb;
         --primary-200: #90caf9;
         --primary-300: #64b5f6;
         --primary-400: #42a5f5;
-        --primary-500: #2196f3; /* Main blue */
+        --primary-500: #2196f3;
         --primary-600: #1e88e5;
         --primary-700: #1976d2;
         --primary-800: #1565c0;
-        --primary-900: #0d47a1; /* Darkest blue */
-        --secondary-500: #4a7a9e; /* Complementary blue */
-        --text-color: #2c3e50; /* Darker text for contrast */
-        --text-color-light: #ecf0f1; /* Light text for dark backgrounds */
-        --background-color: #f0f8ff; /* Very light blue background */
-        --panel-background-color: #ffffff; /* White for content panels */
-        --border-color: #90caf9; /* Light blue border */
-        --shadow-color: rgba(33, 150, 243, 0.2); /* Blue shadow */
+        --primary-900: #0d47a1;
+        --text-dark: #1a1a1a;
+        --text-medium: #4a4a4a;
+        --text-light: #ffffff;
+        --background-light: #f8fbff;
+        --background-white: #ffffff;
+        --border-light: #e1e8f0;
+        --shadow: rgba(25, 118, 210, 0.1);
     }
 
-    body {
-        background-color: var(--background-color) !important;
-        color: var(--text-color) !important;
-    }
-
+    /* Main container styling */
     .gradio-container {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: var(--background-color) !important;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        background: linear-gradient(135deg, var(--background-light) 0%, var(--primary-50) 100%) !important;
+        color: var(--text-dark) !important;
     }
 
+    /* Main content area */
     #main-container {
-        max-width: 900px;
+        max-width: 1000px;
         margin: 0 auto;
-        padding: 20px;
-        background-color: var(--panel-background-color);
-        border-radius: 8px;
-        box-shadow: 0 4px 12px var(--shadow-color);
-        border: 1px solid var(--border-color);
+        padding: 30px;
+        background-color: var(--background-white);
+        border-radius: 16px;
+        box-shadow: 0 8px 32px var(--shadow);
+        border: 1px solid var(--border-light);
     }
 
+    /* Title and subtitle */
     #title {
+        font-size: 2.5rem !important;
+        font-weight: 700 !important;
+        color: var(--primary-800) !important;
         text-align: center;
-        margin-bottom: 10px;
-        color: var(--primary-800);
+        margin-bottom: 8px !important;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     #subtitle {
+        font-size: 1.1rem !important;
+        color: var(--primary-600) !important;
         text-align: center;
-        color: var(--primary-600);
-        margin-bottom: 30px;
-        font-size: 16px;
+        margin-bottom: 30px !important;
+        font-weight: 500 !important;
     }
 
-    #upload-row {
-        margin-bottom: 20px;
-    }
-
+    /* Button styling */
     #try-on-btn {
-        background: linear-gradient(45deg, var(--primary-600), var(--primary-800)) !important;
+        background: linear-gradient(135deg, var(--primary-600), var(--primary-800)) !important;
         border: none !important;
-        color: var(--text-color-light) !important;
-        font-size: 18px;
-        font-weight: bold;
-        padding: 12px 30px;
-        border-radius: 25px;
-        margin: 20px auto;
-        display: block;
-        cursor: pointer;
-        transition: all 0.3s ease;
+        color: var(--text-light) !important;
+        font-size: 18px !important;
+        font-weight: 600 !important;
+        padding: 14px 40px !important;
+        border-radius: 30px !important;
+        margin: 25px auto !important;
+        display: block !important;
+        cursor: pointer !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
     }
 
     #try-on-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px var(--shadow-color);
+        transform: translateY(-3px) !important;
+        box-shadow: 0 8px 25px rgba(25, 118, 210, 0.4) !important;
+        background: linear-gradient(135deg, var(--primary-700), var(--primary-900)) !important;
     }
 
-    /* Input fields and labels */
-    .gr-text-input, .gr-textbox, .gr-image-label {
-        border-color: var(--border-color) !important;
-        color: var(--text-color) !important;
-        background-color: var(--panel-background-color) !important;
+    #try-on-btn:active {
+        transform: translateY(-1px) !important;
     }
 
-    .gr-box, .gr-image-container, .gr-file-container {
-        border: 1px solid var(--border-color) !important;
-        background-color: var(--panel-background-color) !important;
-    }
-    
-    .gradio-container h2 { /* Headers in Gradio components */
-        color: var(--primary-700) !important;
-    }
-
-    .gradio-container p { /* Paragraph text */
-        color: var(--text-color) !important;
+    /* Input field styling */
+    .gr-textbox, .gr-textbox input, .gr-textbox textarea {
+        border: 2px solid var(--border-light) !important;
+        border-radius: 8px !important;
+        background-color: var(--background-white) !important;
+        color: var(--text-dark) !important;
+        font-size: 14px !important;
+        transition: border-color 0.3s ease !important;
     }
 
-    /* Style for the API key input specifically */
-    .gradio-container label.gr-form-label {
-        color: var(--primary-700) !important;
+    .gr-textbox:focus-within {
+        border-color: var(--primary-500) !important;
+        box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1) !important;
     }
 
-    /* Status text field */
-    .gradio-container #component-root > .gr-block.gr-is-input > label > .gr-form-label {
-        color: var(--primary-700) !important;
+    /* Label styling */
+    .gr-form label, .gr-block label, label.gr-form-label {
+        color: var(--text-dark) !important;
+        font-weight: 600 !important;
+        font-size: 14px !important;
+        margin-bottom: 8px !important;
+        display: block !important;
     }
 
-    /* For links within the UI */
+    /* Image upload areas */
+    .gr-image, .gr-file {
+        border: 2px dashed var(--border-light) !important;
+        border-radius: 12px !important;
+        background-color: var(--background-white) !important;
+        transition: border-color 0.3s ease !important;
+    }
+
+    .gr-image:hover, .gr-file:hover {
+        border-color: var(--primary-300) !important;
+    }
+
+    /* File upload text */
+    .gr-image .gr-upload-text, .gr-file .gr-upload-text {
+        color: var(--text-medium) !important;
+        font-size: 14px !important;
+    }
+
+    /* Status and result text */
+    .gr-textbox .gr-textbox-output, .gr-textbox textarea[readonly] {
+        background-color: var(--primary-50) !important;
+        color: var(--text-dark) !important;
+        font-weight: 500 !important;
+    }
+
+    /* Image containers */
+    .gr-image img {
+        border-radius: 8px !important;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+    }
+
+    /* Info text under inputs */
+    .gr-form .gr-info {
+        color: var(--text-medium) !important;
+        font-size: 13px !important;
+        margin-top: 4px !important;
+    }
+
+    /* Links */
     a {
         color: var(--primary-700) !important;
-    }
-    a:hover {
-        color: var(--primary-900) !important;
+        text-decoration: none !important;
+        font-weight: 500 !important;
     }
 
-    /* File upload area text */
-    .gr-image-label > div:first-child {
-        color: var(--primary-600) !important;
+    a:hover {
+        color: var(--primary-900) !important;
+        text-decoration: underline !important;
+    }
+
+    /* Tips section */
+    .tips-section {
+        background-color: var(--primary-50) !important;
+        border-radius: 12px !important;
+        padding: 20px !important;
+        margin-top: 30px !important;
+        border-left: 4px solid var(--primary-500) !important;
+    }
+
+    .tips-section h3 {
+        color: var(--primary-800) !important;
+        font-size: 1.2rem !important;
+        margin-bottom: 15px !important;
+        font-weight: 600 !important;
+    }
+
+    .tips-section ul {
+        margin: 0 !important;
+        padding-left: 20px !important;
+    }
+
+    .tips-section li {
+        color: var(--text-dark) !important;
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+        margin-bottom: 8px !important;
+    }
+
+    /* Progress bar */
+    .gr-progress {
+        background-color: var(--primary-500) !important;
+    }
+
+    /* Ensure all text is visible */
+    * {
+        color: var(--text-dark) !important;
+    }
+
+    /* Override any inherited white text */
+    .gr-block, .gr-form, .gr-panel {
+        color: var(--text-dark) !important;
+    }
+
+    /* Make sure button text remains white */
+    button, .gr-button {
+        color: var(--text-light) !important;
+    }
+
+    #try-on-btn * {
+        color: var(--text-light) !important;
     }
     """
     
-    with gr.Blocks(css=custom_css, title="nano banana tryon") as interface:
+    with gr.Blocks(css=custom_css, title="nano banana tryon", theme=gr.themes.Soft()) as interface:
         gr.HTML("""
             <div id="main-container">
                 <h1 id="title">🍌 nano banana tryon</h1>
@@ -285,7 +376,7 @@ def create_interface():
         with gr.Row():
             with gr.Column():
                 status_text = gr.Textbox(
-                    label="Status",
+                    label="📊 Status",
                     value="Upload both images and click 'Try On' to get started!",
                     interactive=False,
                     lines=2
@@ -312,16 +403,17 @@ def create_interface():
             show_progress=True
         )
         
-        # Add examples section
+        # Add examples section with proper styling
         gr.HTML("""
-            <div style="margin-top: 30px; padding: 20px;">
+            <div class="tips-section">
                 <h3>💡 Tips for Best Results:</h3>
-                <ul style="text-align: left; margin: 10px 0;">
+                <ul>
                     <li>Get your free Gemini API key from <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a></li>
                     <li>Use clear, well-lit photos of yourself</li>
                     <li>Choose clothing images with good visibility of the garment</li>
                     <li>Avoid cluttered backgrounds when possible</li>
                     <li>Make sure both images are high quality</li>
+                    <li>For best results, use images with similar lighting conditions</li>
                 </ul>
             </div>
         """)
